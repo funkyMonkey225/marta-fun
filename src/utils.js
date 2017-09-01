@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const getMartaData = (cb) => {
     fetch('http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1', {
 	method: 'get',
@@ -54,6 +53,10 @@ const pushInfo = (jsonData) => {
             stations.push(destination.STATION);
         }
     })
+    destinations = destinations.sort();
+    directions = directions.sort();
+    lines = lines.sort();
+    stations = stations.sort();
     return [destinations, directions, lines, stations]
 }
 

@@ -1,26 +1,6 @@
 import React, { Component } from 'react';
 import utils from './utils.js';
 
-const formatTime = (time) => {
-    time = Number(time);
-    time= Math.abs(time);
-    if (time/60 >= 1) {
-        var minutes = Math.round(time / 60);
-        var seconds = time % 60;
-        minutes = minutes.toString();
-        seconds = seconds.toString();
-        if (minutes === "1") {
-            time = `${minutes} minute`;
-        } else {
-            time = `${minutes} minutes`;
-        }
-
-    } else {
-        time = `${time} seconds`;
-    }
-    return time;
-}
-
 class MartaDashboard extends Component {
     constructor(props) {
         super(props);
@@ -74,7 +54,7 @@ class MartaDashboard extends Component {
                         <td>{datum.DESTINATION}</td> 
                         <td>{datum.LINE}</td> 
                         <td>{datum.STATION}</td> 
-                        <td>{formatTime(datum.WAITING_SECONDS)}</td>
+                        <td>{utils.formatTime(datum.WAITING_SECONDS)}</td>
                     </tr>
             ))
         } else {

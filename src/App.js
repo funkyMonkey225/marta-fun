@@ -42,7 +42,7 @@ class App extends Component {
     return (
       <div className="App">
           <h1>Welcome to Martaaaaah</h1>
-          <p>Please select your preferences to filter the information</p>
+          <p>Please select your preferences to filter the information.</p>
           <UserFilter 
             destHandler={this._handleDestInput}
             dirHandler={this._handleDirInput}
