@@ -5,6 +5,8 @@ const getMartaData = (cb) => {
 	method: 'get'
 }).then(function(response) {
 	return response.json()
+}).then(function(resp) {
+        cb(resp);
 }).catch(function(err) {
 	// Error :(
 });

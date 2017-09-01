@@ -46,10 +46,10 @@ class UserFilter extends Component {
     constructor(props) {
         super(props);
         this.state={
-            valueDest: "Choose a destination",
-            valueLine: "Choose a line",
-            valueDir: "Choose a direction",
-            valueStat: "Choose a station", 
+            valueDest: "Select a destination",
+            valueLine: "Select a line",
+            valueDir: "Select a direction",
+            valueStat: "Select a station", 
             destinations: [],
             directions: [],
             lines: [],
@@ -68,8 +68,32 @@ class UserFilter extends Component {
         })
     }
 
-    _handleInput = (event) => {
-        console.log(event.target.value);
+    _handleDestInput = (event) => {
+        this.props.destHandler(event.target.value);
+        this.setState({
+            valueDest: event.target.value
+        })
+    }
+
+    _handleDirInput = (event) => {
+        this.setState({
+            valueDir: event.target.value
+        })
+        this.props.dirHandler(this.state.valueDir);
+    }
+
+    _handleLineInput = (event) => {
+        this.props.lineHandler(event.target.value);
+        this.setState({
+            valueLine: event.target.value
+        })
+    }
+
+    _handleStatInput = (event) => {
+        this.props.lineHandler(event.target.value);
+        this.setState({
+            valueStat: event.target.value
+        })
     }
 
     render() {
@@ -100,20 +124,20 @@ class UserFilter extends Component {
 
             return ( 
                 <form>
-                    <select value={this.state.valueDir} onChange={this._handleInput}>
-                        <option key="default" value={this.state.valueDir}>{this.state.valueDir}</option>
+                    <select value={this.state.valueDir} onChange={this._handleDirInput}>
+                        <option key="default" value="Select a direction">Select a direction</option>
                         {directions}
                     </select>
-                    <select value={this.state.valueDest} onChange={this._handleInput}>
-                        <option key="default" value={this.state.valueDest}>{this.state.valueDest}</option>
+                    <select value={this.state.valueDest} onChange={this._handleDestInput}>
+                        <option key="default" value="Select a destination">Select a destination</option>
                         {destinations}
                     </select>
-                    <select value={this.state.valueLine} onChange={this._handleInput}>
-                        <option key="default" value={this.state.valueLine}>{this.state.valueLine}</option>
+                    <select value={this.state.valueLine} onChange={this._handleLineInput}>
+                        <option key="default" value="Select a line">Select a line</option>
                         {lines}
                     </select>
-                    <select value={this.state.valueStat} onChange={this._handleInput}>
-                        <option key="default" value={this.state.valueStat}>{this.state.valueStat}</option>
+                    <select value={this.state.valueStat} onChange={this._handleStatInput}>
+                        <option key="default" value="Select a stationx">Select a station</option>
                         {stations}
                     </select>
                 </form>
