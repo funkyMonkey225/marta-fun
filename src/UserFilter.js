@@ -46,26 +46,27 @@ class UserFilter extends Component {
     constructor(props) {
         super(props);
         this.state={
+            directions: [],
+            destinations: [],
+            lines: [],
+            stations: [],
             valueDest: "Select a destination",
             valueLine: "Select a line",
             valueDir: "Select a direction",
-            valueStat: "Select a station", 
-            destinations: [],
-            directions: [],
-            lines: [],
-            stations: []
+            valueStat: "Select a station"
         };
     }
 
     componentWillMount() {
         getMartaDataz((resp) => {
             this.setState({
-                destinations: resp[0],
                 directions: resp[1],
+                destinations: resp[0],
                 lines: resp[2],
                 stations: resp[3]
+
             });
-        })
+        });
     }
 
     _handleDestInput = (event) => {
@@ -97,25 +98,30 @@ class UserFilter extends Component {
     }
 
     render() {
-        var directions = this.state.directions.map((direction, idx) => (
+        var directions;
+        var destinations;
+        var lines;
+        var stations;
+        
+        directions = (this.state.directions).map((direction, idx) => (
             <CreateOption
                 value={direction}
                 key={idx}
                 />
             ));
-        var destinations = this.state.destinations.map((destination, idx) => (
+        destinations = (this.state.destinations).map((destination, idx) => (
             <CreateOption
                 value={destination}
                 key={idx}
                 />
             ));
-        var lines = this.state.lines.map((line, idx) => (
+        lines = (this.state.lines).map((line, idx) => (
             <CreateOption
                 value={line}
                 key={idx}
                 />
             ));
-         var stations = this.state.stations.map((station, idx) => (
+        stations = (this.state.stations).map((station, idx) => (
             <CreateOption
                 value={station}
                 key={idx}
@@ -143,6 +149,7 @@ class UserFilter extends Component {
                 </form>
             );
         }
+    
 }
 
 export default UserFilter;
