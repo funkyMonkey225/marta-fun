@@ -87,7 +87,7 @@ class UserFilter extends Component {
             ));
         stations = (this.state.stations).map((station, idx) => (
             <CreateOption
-                value={station}
+                value={utils.formatStation(station)}
                 key={idx}
                 />
             ));

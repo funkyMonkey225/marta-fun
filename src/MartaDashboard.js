@@ -46,7 +46,7 @@ class MartaDashboard extends Component {
 
         if (this.props.filterStat !== "Select a station") {
             martaOutput = martaOutput.filter((datum) => (
-                datum.STATION === this.props.filterStat
+                utils.formatStation(datum.STATION) === this.props.filterStat
             ))
         }
         if (martaOutput.length !== 0) {
