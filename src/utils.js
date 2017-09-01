@@ -1,4 +1,3 @@
-import React from 'react';
 
 const getMartaData = (cb) => {
     fetch('http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1', {
@@ -13,18 +12,33 @@ const getMartaData = (cb) => {
     });
 }
 
+const titleCase = (str) => {
+ var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' '); 
+}
+
+const formatStation = (station) => {
+    station = station.slice(0, -8);
+    station = titleCase(station);
+
+}
+
 const formatTime = (time) => {
     time = Number(time);
-    time= Math.abs(time);
-    if (time/60 >= 1) {
+    if (time <= 0) {
+        time = "Boarding"
+    } else if (time/60 >= 1) {
         var minutes = Math.round(time / 60);
         var seconds = time % 60;
         minutes = minutes.toString();
         seconds = seconds.toString();
         if (minutes === "1") {
-            time = `${minutes} minute`;
+            time = `${minutes} minute and ${seconds} seconds`;
         } else {
-            time = `${minutes} minutes`;
+            time = `${minutes} minutes ${seconds} seconds`;
         }
 
     } else {
@@ -64,4 +78,5 @@ export default {
     pushInfo,
     getMartaData,
     formatTime,
+    formatStation,
 }

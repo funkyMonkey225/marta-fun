@@ -39,9 +39,10 @@ class App extends Component {
         })
     }
     render() {
+        const {filterDest, filterDir, filterStat, filterLine} = this.state
     return (
       <div className="App">
-          <h1>Welcome to Martaaaaah</h1>
+          <h1>Welcome to Martaaaaagghhhh</h1>
           <p>Please select your preferences to filter the information.</p>
           <UserFilter 
             destHandler={this._handleDestInput}
@@ -51,10 +52,10 @@ class App extends Component {
           />
           <br />
           <MartaDashboard 
-            filterDest={this.state.filterDest}
-            filterDir={this.state.filterDir}
-            filterStat={this.state.filterStat}
-            filterLine={this.state.filterLine}
+            filterDest={filterDest}
+            filterDir={filterDir}
+            filterStat={filterStat}
+            filterLine={filterLine}
           />
       </div>
     );
