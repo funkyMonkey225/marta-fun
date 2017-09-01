@@ -5,7 +5,6 @@ const getMartaDataz = (cb) => {
     fetch('http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1', {
 	method: 'get',
     }).then(function(response) {
-        console.log(response);
         return response.json()
     }).then(pushInfo)
     .then(function(resp) {
@@ -17,12 +16,13 @@ const getMartaDataz = (cb) => {
 }
 
 const pushInfo = (jsonData) => {
+    console.log(jsonData);
     var destinations = [];
     var directions = [];
     var lines = [];
     var stations = [];
     jsonData.forEach((destination) => {
-        if (destinations.indexOf(destination.DESTINATION) === -1) {
+        if (destinations.indexOf(destination.DESTINATION) === -1 && destination.DESTINATION !== "") {
             destinations.push(destination.DESTINATION);
         }
         if (directions.indexOf(destination.DIRECTION) === -1) {
