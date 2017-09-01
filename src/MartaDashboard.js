@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import utils from './utils.js';
 
 const formatTime = (time) => {
     time = Number(time);
@@ -20,19 +21,6 @@ const formatTime = (time) => {
     return time;
 }
 
-const getMartaData = (cb) => {
-    fetch('http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1', {
-	method: 'get'
-}).then(function(response) {
-	return response.json()
-}).then(function(resp) {
-        cb(resp);
-}).catch(function(err) {
-	// Error :(
-});
-}
-
-
 class MartaDashboard extends Component {
     constructor(props) {
         super(props);
@@ -43,7 +31,7 @@ class MartaDashboard extends Component {
     
     componentWillMount() {
         this.martaDataGrabber = setInterval(() => {
-            getMartaData((jsonData) => {
+            utils.getMartaData((jsonData) => {
                 this.setState({
                     martaData: jsonData
                 });
