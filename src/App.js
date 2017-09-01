@@ -8,10 +8,10 @@ class App extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      filterDest: null,
-      filterDir: null,
-      filterStat: null,
-      filterLine: null
+      filterDest: "Select a destination",
+      filterDir: "Select a direction",
+      filterStat: "Select a station",
+      filterLine: "Select a line"
     };
 }
 

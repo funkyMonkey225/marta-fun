@@ -37,13 +37,17 @@ class MartaDashboard extends Component {
     }
 
     render() {
-        let martaOutput = this.state.martaData.map((datum) => <p>{datum}</p>)
+        let martaOutput = this.state.martaData.filter((datum) => (
+            datum.DESTINATION === this.props.filterDest
+        ))
+        martaOutput = martaOutput.map((datum) => (
+                <div>
+                    <span>{datum.DIRECTION} {datum.DESTINATION} {datum.LINE} {datum.STATION} {datum.EVENT_TIME} {datum.NEXT_ARR}</span>
+                </div>
+        ))
         return (
             <div>
-                <h2>Martaaaah</h2>
-                <div>
-                    {martaOutput}
-                </div>
+                {martaOutput}
             </div>
         )
     }
