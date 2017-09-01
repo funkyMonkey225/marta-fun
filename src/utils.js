@@ -23,7 +23,7 @@ const titleCase = (str) => {
 const formatStation = (station) => {
     station = station.slice(0, -8);
     station = titleCase(station);
-
+    return station;
 }
 
 const formatTime = (time) => {

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import utils from './utils.js';
 import TableHeader from './tableheader.js';
 
-
-const style = {color: 'green'};
-
 class MartaDashboard extends Component {
     constructor(props) {
         super(props);
@@ -59,19 +56,18 @@ class MartaDashboard extends Component {
                     style={
                             datum.WAITING_SECONDS<=0 ? 
                             {color: "white", backgroundColor: "green"} : {}
-                        }
-                    >
+                        }>
                         <td>{datum.DIRECTION}</td> 
                         <td>{datum.DESTINATION}</td> 
                         <td>{datum.LINE}</td> 
-                        <td>{datum.STATION}</td> 
+                        <td>{utils.formatStation(datum.STATION)}</td> 
                         <td>{utils.formatTime(datum.WAITING_SECONDS)}</td>
                     </tr>
             ))
 
         } else {
             renderFirstOne = false;
-            martaOutput = <tr><td colSpan="5">No trains found for the selected direction, destination, line, and station. Please select again.</td></tr>
+            martaOutput = <tr><td>No trains found for the selected direction, destination, line, and station. Please select again.</td></tr>
         }
 
         return (

@@ -7,3 +7,7 @@ body {
 .marta-dashboard {
     margin: 0 auto;
 }
+
+td {
+    padding: .5em .75em;
+}
