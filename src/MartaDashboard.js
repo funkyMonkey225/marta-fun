@@ -13,7 +13,6 @@ const getMartaData = (cb) => {
 }
 
 
-
 class MartaDashboard extends Component {
     constructor(props) {
         super(props);
@@ -23,13 +22,13 @@ class MartaDashboard extends Component {
     }
     
     componentWillMount() {
-        // this.martaDataGrabber = setInterval(() => {
-        getMartaData((jsonData) => {
-            this.setState({
-                martaData: jsonData
+        this.martaDataGrabber = setInterval(() => {
+            getMartaData((jsonData) => {
+                this.setState({
+                    martaData: jsonData
+                });
             });
-        });
-        // }, 10000)
+        }, 10000)
     }
 
     componentWillUnmount() {
@@ -60,15 +59,33 @@ class MartaDashboard extends Component {
                 datum.STATION === this.props.filterStat
             ))
         }
-        martaOutput = martaOutput.map((datum, idx) => (
-                <div key={idx}>
-                    <span>{datum.DIRECTION} {datum.DESTINATION} {datum.LINE} {datum.STATION} {datum.EVENT_TIME} {datum.NEXT_ARR}</span>
-                </div>
-        ))
+        if (martaOutput.length !== 0) {
+            martaOutput = martaOutput.map((datum, idx) => (
+                    <tr key={idx}>
+                        <td>{datum.DIRECTION}</td> 
+                        <td>{datum.DESTINATION}</td> 
+                        <td>{datum.LINE}</td> 
+                        <td>{datum.STATION}</td> 
+                        <td>{datum.NEXT_ARR}</td>
+                    </tr>
+            ))
+        } else {
+            martaOutput = <tr><td>No trains found for the selected direction, destination, line, and station. Please select again.</td></tr>
+        }
+
         return (
-            <div>
-                {martaOutput}
-            </div>
+            <table className="marta-dashboard">
+                <thead>
+                    <tr>
+                        <th>Direction</th>
+                        <th>Destination</th>
+                        <th>Line</th>
+                        <th>Station</th>
+                        <th>Next Arrival</th>
+                    </tr>
+                </thead>
+                <tbody>{martaOutput}</tbody>
+            </table>
         )
     }
 }

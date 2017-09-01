@@ -137,7 +137,7 @@ class UserFilter extends Component {
                         {lines}
                     </select>
                     <select value={this.state.valueStat} onChange={this._handleStatInput}>
-                        <option key="default" value="Select a stationx">Select a station</option>
+                        <option key="default" value="Select a station">Select a station</option>
                         {stations}
                     </select>
                 </form>
