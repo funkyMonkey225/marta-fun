@@ -5,8 +5,6 @@ const getMartaData = (cb) => {
 	method: 'get'
 }).then(function(response) {
 	return response.json()
-}).then(function(jsonData) {
-    console.log(jsonData);
 }).catch(function(err) {
 	// Error :(
 });
@@ -20,17 +18,16 @@ class MartaDashboard extends Component {
         this.state={
             martaData: []
         };
-        this.componentWillMount = this.componentWillMount.bind(this);
     }
     
     componentWillMount() {
-        this.martaDataGrabber = setInterval(() => {
+        // this.martaDataGrabber = setInterval(() => {
         getMartaData((jsonData) => {
             this.setState({
                 martaData: jsonData
             });
         });
-        }, 10000)
+        // }, 10000)
     }
 
     componentWillUnmount() {
