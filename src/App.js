@@ -49,6 +49,7 @@ class App extends Component {
             statHandler={this._handleStatInput}
             lineHandler={this._handleLineInput}
           />
+          <br />
           <MartaDashboard 
             filterDest={this.state.filterDest}
             filterDir={this.state.filterDir}

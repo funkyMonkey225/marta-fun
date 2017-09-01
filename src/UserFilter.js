@@ -76,10 +76,10 @@ class UserFilter extends Component {
     }
 
     _handleDirInput = (event) => {
+        this.props.dirHandler(event.target.value);
         this.setState({
             valueDir: event.target.value
         })
-        this.props.dirHandler(this.state.valueDir);
     }
 
     _handleLineInput = (event) => {
@@ -90,7 +90,7 @@ class UserFilter extends Component {
     }
 
     _handleStatInput = (event) => {
-        this.props.lineHandler(event.target.value);
+        this.props.statHandler(event.target.value);
         this.setState({
             valueStat: event.target.value
         })

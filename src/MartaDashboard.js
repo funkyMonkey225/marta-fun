@@ -37,11 +37,31 @@ class MartaDashboard extends Component {
     }
 
     render() {
-        let martaOutput = this.state.martaData.filter((datum) => (
-            datum.DESTINATION === this.props.filterDest
-        ))
-        martaOutput = martaOutput.map((datum) => (
-                <div>
+        let martaOutput = this.state.martaData
+        if (this.props.filterDest !== "Select a destination") {
+            martaOutput = martaOutput.filter((datum) => (
+                datum.DESTINATION === this.props.filterDest
+            ))
+        }
+        if (this.props.filterDir !== "Select a direction") {
+            martaOutput = martaOutput.filter((datum) => (
+                datum.DIRECTION === this.props.filterDir
+            ))
+        }
+
+        if (this.props.filterLine !== "Select a line") {
+            martaOutput = martaOutput.filter((datum) => (
+                datum.LINE === this.props.filterLine
+            ))
+        }
+
+        if (this.props.filterStat !== "Select a station") {
+            martaOutput = martaOutput.filter((datum) => (
+                datum.STATION === this.props.filterStat
+            ))
+        }
+        martaOutput = martaOutput.map((datum, idx) => (
+                <div key={idx}>
                     <span>{datum.DIRECTION} {datum.DESTINATION} {datum.LINE} {datum.STATION} {datum.EVENT_TIME} {datum.NEXT_ARR}</span>
                 </div>
         ))
