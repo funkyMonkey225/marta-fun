@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 2em 0 0 0;
   font-family: sans-serif;
 }
 
@@ -10,4 +10,24 @@ body {
 
 td {
     padding: .5em .75em;
+}
+
+.boarding {
+    background-color: #00b300;
+    color: white
+}
+.blue {
+    color: blue;
+}
+
+.green {
+    color: #145A32;
+}
+
+.red {
+    color: red;
+}
+
+.gold {
+    color: #DAA520;
 }

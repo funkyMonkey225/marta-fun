@@ -53,13 +53,26 @@ class MartaDashboard extends Component {
             renderFirstOne = true;
             martaOutput = martaOutput.map((datum, idx) => (
                     <tr key={idx} 
-                    style={
+                    className={
                             datum.WAITING_SECONDS<=0 ? 
-                            {color: "white", backgroundColor: "green"} : {}
+                            "boarding" : null
                         }>
                         <td>{datum.DIRECTION}</td> 
                         <td>{datum.DESTINATION}</td> 
-                        <td>{datum.LINE}</td> 
+                        <td className={(() => {
+                            switch(datum.LINE) {
+                                case "BLUE":
+                                    return "blue";
+                                case "GREEN": 
+                                    return "green";
+                                case "GOLD": 
+                                    return "gold";
+                                case "RED":
+                                    return "red";
+                                default:
+                                    return null;
+                            }})()
+                        }>{datum.LINE}</td> 
                         <td>{utils.formatStation(datum.STATION)}</td> 
                         <td>{utils.formatTime(datum.WAITING_SECONDS)}</td>
                     </tr>
@@ -72,7 +85,7 @@ class MartaDashboard extends Component {
 
         return (
         <table className="marta-dashboard">
-            {renderFirstOne ? <TableHeader /> : null}
+            {renderFirstOne && <TableHeader />}
         <tbody>{martaOutput}</tbody>
     </table>
         )
