@@ -1,15 +1,25 @@
+import axios from 'axios';
+const MARTA_URL='http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1'
 
 const getMartaData = (cb) => {
-    fetch('http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1', {
-	method: 'get',
-    }).then(function(response) {
-        return response.json()
-    }).then(function(resp) {
-        cb(resp);
-    })
-    .catch(function(err) {
-        // Error :(
-    });
+    axios.get(MARTA_URL)
+        .then(function(response) {
+            return response.data;
+        }).then(function(resp) {
+            cb(resp);
+        }).catch(function(err) {
+            // Error :(
+        });
+    // fetch('http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1', {
+	// method: 'get',
+    // }).then(function(response) {
+    //     return response.json()
+    // }).then(function(resp) {
+    //     cb(resp);
+    // })
+    // .catch(function(err) {
+    //     // Error :(
+    // });
 }
 
 const titleCase = (str) => {
